@@ -1,7 +1,7 @@
 import * as axios from 'axios'
 import { createOrderAfterAuth } from '../App'
 import { setStorageUser } from './utils'
-const SERVER_API_START_URL = "https://tedmedapi-server.herokuapp.com/"
+const SERVER_API_START_URL = "https://tedmedapi-server.herokuapp.com/api/"
 export function getApiResponse(apiUrl, token=false, goodResponseHandler = standartGoodResponseHandler, badResponseHandler = standartErrorResponseHandler) {
     console.log(`Send get response: ${apiUrl}`)
     const option = {
