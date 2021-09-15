@@ -12,7 +12,7 @@ import { setStorageUser, removeStorageUser } from '../../support_functions/utils
 const AuthPageBody = (props) => {
 
     function authUser (userdata, errorMessageSetter, errorFieldName, needRemember=false) {
-        const loginUrl = "http://127.0.0.1:8000/auth/"
+        const loginUrl = "https://tedmedapi-server.herokuapp.com/auth/"
             
             const goodResponseHandler = (response)=>{
                 if (response.status === 200){
@@ -49,7 +49,7 @@ const AuthPageBody = (props) => {
     }
     const onSubmitRegisterForm = (formData, errorMessageSetter, errorFieldName) =>{
         console.log("Form data", formData)
-        const loginUrl = "http://127.0.0.1:8000/api/auth/register/register_user/"
+        const loginUrl = "https://tedmedapi-server.herokuapp.com/api/auth/register/register_user/"
         const userData = JSON.stringify(formData)
         const goodResponseHandler = (response)=>{
             if (response.status === 200){

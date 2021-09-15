@@ -6,7 +6,7 @@ import * as axios from 'axios'
 const HeaderMain = (props) => {
 
     if (props.categories.length === 0){
-        axios.get('http://127.0.0.1:8000/api/navigation/').then(response => {
+        axios.get('https://tedmedapi-server.herokuapp.com/api/navigation/').then(response => {
             props.setCategories(response.data)
         })
     }
