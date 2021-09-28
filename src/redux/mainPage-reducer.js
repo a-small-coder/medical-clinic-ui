@@ -45,19 +45,15 @@ const mainPageReducer = (state = initialState, action) =>{
         ...state};
     switch (action.type){
         case SET_ANALYZES_COMPLEXES: {
-            // debugger
             stateCopy.analiyzesComplex = action.analiyzesComplex.map(i =>{
                 return {...i}
             })
-            // stateCopy.analiyzesComplex = action.analiyzesComplex
             
             return stateCopy
         }
         case SET_PRODUCTS: {
-            // debugger
             stateCopy.products = {
-                ...state.products, 
-                // items: state.products.items.push(action.items), 
+                ...state.products,
                 items : [...state.products.items, ...action.items],
                 totalCount: action.totalCount,
                 pageSize: action.pageSize,

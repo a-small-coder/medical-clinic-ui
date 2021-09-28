@@ -117,7 +117,6 @@ export function createOrderAfterAuth(user, customer, setCart) {
         place_type: getCookie('place_type'),
         customer: customer
       }
-      debugger
       createOrder(user.token, data, setCart)
       setCookie('make_order', false);
       goToOrders("/user/profile/orders")

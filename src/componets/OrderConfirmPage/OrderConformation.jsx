@@ -56,7 +56,6 @@ function OrderConformation(props) {
         data.place_type = place_type
         data.customer = props.order.customer
         console.log("customer data:", props.order.customer)
-        debugger
         createOrder(props.userToken, data, props.setCart)
         props.history.push("/user/profile/orders")
     }

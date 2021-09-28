@@ -25,7 +25,6 @@ function CatalogFilterForm(props) {
                     const clearForm = () => {
                         let data = {}
                         data.categories = removeCheckboxesDataByCategory(values.categories, props.category)
-                        debugger
                         setValues(data)
                         props.onSubmitForm(data);
                     }

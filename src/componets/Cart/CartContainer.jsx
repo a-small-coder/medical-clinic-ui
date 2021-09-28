@@ -83,7 +83,7 @@ const Cart = (props) =>{
         )
         
     }
-    debugger
+    
     // waiting server response
     return <LoadingSheme page/>
 }
