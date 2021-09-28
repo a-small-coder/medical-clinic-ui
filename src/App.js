@@ -18,6 +18,7 @@ import Footer from "./componets/Footer/Footer";
 import { getStorageUserToken } from "./support_functions/utils";
 import { getCookie, setCookie } from 'react-use-cookie';
 import UserProfile from "./componets/UserProfilePage/UserProfile";
+import AboutUsConteiner from "./componets/AboutUs/AboutUsConteiner";
 
 function App(props) {
 
@@ -49,6 +50,7 @@ function App(props) {
           <Route exact path="/cart" component={CartContainer}/>
           <Route path="/cart/order-conformation" component={OrderConformationContainer}/>
           <Route path="/user/profile/" component={UserProfile}/>
+          <Route path="/aboutus/" component={AboutUsConteiner}/>
           <Route component={InWork} />
         </Switch>
         <Footer />
