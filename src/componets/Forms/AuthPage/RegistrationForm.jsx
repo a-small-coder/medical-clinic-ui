@@ -17,7 +17,6 @@ function RegistrationForm(props){
             }
         },
     ]
-
     const initialValues = {
         firstName: '',
         secondName: '',

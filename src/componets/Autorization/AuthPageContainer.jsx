@@ -62,7 +62,7 @@ const AuthPageBody = (props) => {
         }
         const badResponseHandler = (err) => {
             if (err.response.status === 400){
-                errorMessageSetter(errorFieldName, err.detail)
+                errorMessageSetter(errorFieldName, err.response.data.detail)
             }
         }
         postApiRequest(loginUrl, userData, goodResponseHandler, badResponseHandler)
