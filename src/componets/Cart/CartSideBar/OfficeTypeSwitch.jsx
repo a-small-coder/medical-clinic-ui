@@ -29,7 +29,7 @@ function OfficeTypeSwitch(props) {
                     className={getButtonClassName('in office')}
                     onClick={onOptionOfficeVisitClick}
                 >
-                    В TedMed
+                    В Med
                 </button>
             </div>
         </div>

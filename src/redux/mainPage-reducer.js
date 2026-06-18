@@ -22,7 +22,7 @@ let initialState = {
     analiyzesComplex : [
     ],
     stocks : [
-        // {id: 1, slogan: "Путешествуй уверенно с TedMed", text: "Анализы ПЕРЕД и ПОСЛЕ вакцинации от COVID-19 Вакцинация против COVID-19", img: null, link: ""},
+        // {id: 1, slogan: "Путешествуй уверенно с Med", text: "Анализы ПЕРЕД и ПОСЛЕ вакцинации от COVID-19 Вакцинация против COVID-19", img: null, link: ""},
         // {id: 2, slogan: "Онкодиагностика на любом этапе", text: "Возрастная скидка и бонусная программа", img: null, link: ""},
         // {id: 3, slogan: "Диагностика COVID-19 для организаций", text: "", img: null, link: ""},
         // {id: 4, slogan: "Обязательные анализы для детской медкарты 026/У", text: "", img: null, link: ""},

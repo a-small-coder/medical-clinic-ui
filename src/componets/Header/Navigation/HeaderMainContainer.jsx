@@ -20,7 +20,7 @@ const HeaderMain = (props) => {
 
     return (
         <div className="header__main">
-            <Link to={"/"} className="header__logo">TedMed.</Link>
+            <Link to={"/"} className="header__logo">Med.</Link>
             <div className="header__menu menu">
                 <nav className="menu__body">
                     <ul data-spollers="768, max" className={spoilerClassName}>

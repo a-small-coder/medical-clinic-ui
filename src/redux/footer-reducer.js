@@ -7,29 +7,29 @@ let initialState = {
         initSpoiler: false,
         categories: [
             {
-                category: "Меню",
+                category: "Разделы",
                 sub_categories: [
-                    {id: 1, sub_category: "Каталог анализов", link: "/catalog/all-analyzes"},
-                    {id: 2, sub_category: "Наши услуги", link: "/service"},
-                    {id: 3, sub_category: "Вакцинация", link: "/service/vac"},
+                    {id: 1, sub_category: "Каталог", link: "/catalog/all-analyzes"},
+                    {id: 2, sub_category: "Услуги", link: "/service"},
+                    {id: 3, sub_category: "Пакеты", link: "/service/vac"},
                     {id: 4, sub_category: "Акции", link: "/stocks"},
                 ],
                 id: 1,
                 spoilerActive: false,
             },
             {
-                category: "О Нас",
+                category: "О компании",
                 sub_categories: [
-                    {id: 1, sub_category: "История компании", link: "/about-us"},
-                    {id: 2, sub_category: "Клиентам", link: "/forclients"},
-                    {id: 3, sub_category: "Партнеры", link: "/forpartners"},
-                    {id: 4, sub_category: "Лицензия", link: "/license"},
+                    {id: 1, sub_category: "О нас", link: "/about-us"},
+                    {id: 2, sub_category: "Для клиентов", link: "/forclients"},
+                    {id: 3, sub_category: "Партнёрам", link: "/forpartners"},
+                    {id: 4, sub_category: "Документы", link: "/license"},
                 ],
                 id: 2,
                 spoilerActive: false,
             },
             {
-                category: "Мы в соцсетях",
+                category: "Соцсети",
                 societies: true,
                 sub_categories: [
                     {id: 1, sub_category: "Instagram", link: "https://www.instagram.com/?hl=ru", icon: "_icon-instagram"},
