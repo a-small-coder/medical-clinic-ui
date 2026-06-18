@@ -8,8 +8,6 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
-    "babel-cli": "^6.26.0",
-    "babel-preset-react-app": "^3.1.2",
     "formik": "^2.2.9",
     "formik-material-ui": "^3.0.1",
     "react": "~0.13.x || ~0.14.x || ^15.0.0 || ^16.0.0 || ^17.0.0",
@@ -48,16 +46,14 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "parcel-bundler": "^1.12.5",
+    "browserslist": "^4.21.0",
+    "cross-env": "^7.0.3",
     "sass": "^1.35.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "test": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts test",
     "eject": "react-scripts eject"
   },
   "keywords": [],

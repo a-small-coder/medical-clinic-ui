@@ -3,10 +3,11 @@ import {connect} from 'react-redux';
 import MenuItem from './MenuItem';
 import { Link } from 'react-router-dom';
 import * as axios from 'axios'
+import urlStart from '../../../support_functions/api_requests'
 const HeaderMain = (props) => {
 
     if (props.categories.length === 0){
-        axios.get('https://tedmedapi-server.herokuapp.com/api/navigation/').then(response => {
+        axios.get(`${urlStart}navigation/`).then(response => {
             props.setCategories(response.data)
         })
     }

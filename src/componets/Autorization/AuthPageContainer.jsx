@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { postApiRequest } from '../../support_functions/api_requests';
+import urlStart, { postApiRequest, AUTH_URL } from '../../support_functions/api_requests';
 import { setIsAuthAC, setIsLoadingAC, setIsNeedRedirectAC, setUserDataAC } from '../../redux/auth-reducer';
 import '../../styles/Autorization/Autorization.scss';
 import '../../styles/Forms/Forms.scss';
@@ -12,7 +12,7 @@ import { setStorageUser, removeStorageUser } from '../../support_functions/utils
 const AuthPageBody = (props) => {
 
     function authUser (userdata, errorMessageSetter, errorFieldName, needRemember=false) {
-        const loginUrl = "https://tedmedapi-server.herokuapp.com/auth/"
+        const loginUrl = AUTH_URL
             
             const goodResponseHandler = (response)=>{
                 if (response.status === 200){
@@ -49,7 +49,7 @@ const AuthPageBody = (props) => {
     }
     const onSubmitRegisterForm = (formData, errorMessageSetter, errorFieldName) =>{
         console.log("Form data", formData)
-        const loginUrl = "https://tedmedapi-server.herokuapp.com/api/auth/register/register_user/"
+        const registerUrl = `${urlStart}auth/register/register_user/`
         const userData = JSON.stringify(formData)
         const goodResponseHandler = (response)=>{
             if (response.status === 200){
@@ -65,7 +65,7 @@ const AuthPageBody = (props) => {
                 errorMessageSetter(errorFieldName, err.response.data.detail)
             }
         }
-        postApiRequest(loginUrl, userData, goodResponseHandler, badResponseHandler)
+        postApiRequest(registerUrl, userData, goodResponseHandler, badResponseHandler)
     }
     if (props.auth.isNeedRedirect || !props.auth.user.is_anon) {
         props.setIsNeedRedirect(false)
