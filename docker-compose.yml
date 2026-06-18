@@ -1,0 +1,47 @@
+# Общий compose для папки medical-clinic на сервере.
+#
+# Структура:
+#   medical-clinic/
+#     medical-clinic-prod-back/
+#     medical-clinic-ui/          ← этот репозиторий (здесь лежит docker-compose.yml)
+#
+# Запуск:
+#   cd /home/medical-clinic/medical-clinic-ui
+#   docker compose up -d --build
+#
+# Порты на хосте (8000 занят другими проектами):
+#   frontend → http://SERVER:8090
+#   backend  → http://SERVER:8080  (прямой доступ к API, опционально)
+
+services:
+  backend:
+    build: ../medical-clinic-prod-back
+    container_name: medical-clinic-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-change-me-in-production}
+      DEBUG: ${DEBUG:-False}
+      USE_S3: ${USE_S3:-False}
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////data/db.sqlite3}
+    volumes:
+      - app_data:/data
+      - app_media:/app/media
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: /api/
+    container_name: medical-clinic-frontend
+    restart: unless-stopped
+    ports:
+      - "8090:80"
+    depends_on:
+      - backend
+
+volumes:
+  app_data:
+  app_media:
