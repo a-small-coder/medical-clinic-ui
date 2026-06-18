@@ -37,7 +37,7 @@ function RegistrationForm(props){
         password: Yup.string()
             .required('Поле "Пароль" обязательно для заполнения.')
             .min(6, "Пароль должен содержать 6 или более символов")
-            .max(25, "Пароль не может содержать более 24 символов"),
+            .max(24, "Пароль не может содержать более 24 символов"),
         confirm_password: Yup.string().oneOf([Yup.ref('password'), ''], 'Пароли не совпадают.').required('Подтвердите пароль.'),
         acceptTermAndConditions: Yup.array().min(1,"Необходимо подтвердить согласие на обработку персональных данных"),
     })
@@ -82,7 +82,7 @@ function RegistrationForm(props){
                                     label='Отчество' 
                                     name='fatherName' 
                                     fieldClassName="auth_input" 
-                                    placeholder="Отчеcтво"
+                                    placeholder="Отчество"
                                     standartOnBlur={handleBlur}
                                     isError={errors.fatherName && touched.fatherName}
                                 />

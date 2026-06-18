@@ -4,7 +4,7 @@ function ContentBlock(props) {
     const wrapperClass = props.wrapperClassName
     // const contentTitle = props.content.title
     const contentTitle = "Заголовок блока"
-    const contentData = {title: contentTitle, text: [{id: 1, text: "hellow!!"}]}
+    const contentData = {title: contentTitle, text: [{id: 1, text: "Текст блока будет добавлен позже."}]}
     const renderImageBlock = (imageData) => {
         if (imageData != null && imageData?.img && imageData?.altText){
             return (

@@ -29,11 +29,11 @@ let initialState = {
                 active_count: 0,
                 items: [
                     {slug: "blood-beohim", is_active: false, text: "биохимические исследования крови", complex_type: "" },
-                    {slug: "blood-common", is_active: false, text: "общиехимические исследования крови", complex_type: "" },
+                    {slug: "blood-common", is_active: false, text: "общеклинические исследования крови", complex_type: "" },
                     {slug: "top-10", is_active: false, text: "ТОП-10", complex_type: "" },
                     {slug: "lab-search", is_active: false, text: "лабораторные исследования", complex_type: "" },
                     {slug: "blood-beohim2", is_active: false, text: "биохимические исследования крови", complex_type: ""},
-                    {slug: "blood-common2", is_active: false, text: "общиехимические исследования крови", complex_type: ""},
+                    {slug: "blood-common2", is_active: false, text: "общеклинические исследования крови", complex_type: ""},
                     {slug: "top-102", is_active: false, text: "ТОП-10", complex_type: ""},
                     {slug: "lab-search2", is_active: false, text: "лабораторные исследования", complex_type: ""},
                 ]
@@ -46,7 +46,7 @@ let initialState = {
                     {slug: "blood", is_active: false, text: "комплексные анализы крови",},
                     {slug: "each-year-observe", is_active: false, text: "ежегодное обследование",},
                     {slug: "diabet", is_active: false, text: "диагностика диабета",},
-                    {slug: "hurt-and-blood-stytem", is_active: false, text: "оценка риска заюолевание сердечно-сосудистой системы",},
+                    {slug: "hurt-and-blood-stytem", is_active: false, text: "оценка риска заболеваний сердечно-сосудистой системы",},
                 ]
             },
 

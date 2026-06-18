@@ -14,7 +14,7 @@ function CreateOrder(props) {
                         ОФОРМИТЬ ЗАКАЗ
                     </button>
                     <div className="confirm-order__error-message message-block _orange">
-                        Необходио авторизоваться
+                        Необходимо авторизоваться
                     </div>
 
                 </div>

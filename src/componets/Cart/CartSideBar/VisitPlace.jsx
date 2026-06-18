@@ -10,7 +10,7 @@ function VisitPlace(props) {
                 </div>
                 <div className="visit-place__office">
                     <div className="visit-place__title _title-standart">
-                        Медицинский оффис:
+                        Медицинский офис:
                     </div>
                     <div className="visit-place__item _icon-aid-kit">
                         <span>{props.office_address} </span>

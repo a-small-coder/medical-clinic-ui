@@ -48,7 +48,7 @@ const AnalyzeComplexes = (props) => {
                 <div className="sub-slider-big__body">
                     <h2 className="sub-slider-big__title _title">Популярные анализы собраны в комплексы</h2>
                     <div className="sub-slider-big__text">
-                        Наша клиника заботится о своих клиента. 
+                        Наша клиника заботится о своих клиентах. 
                         Теперь не придется набирать полную корзину анализов, 
                         достаточно выбрать нужный комплекс.
                     </div>
