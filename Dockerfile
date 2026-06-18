@@ -12,7 +12,7 @@ COPY src ./src
 ARG REACT_APP_API_URL=http://localhost:8000/api/
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
-RUN npm run build
+RUN npm run build:ci
 
 # Stage 2: serve with nginx
 FROM nginx:1.27-alpine
