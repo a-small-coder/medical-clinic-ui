@@ -1,3 +1,5 @@
+import { ROUTES } from '../config/routes';
+
 const SWITCH_SPOILER_MODE = "SWITCH-SPOILER-MODE";
 const ACTIVETE_SPOILER = "ACTIVETE-SPOILER";
 const DISACTIVETE_SPOILER = "DISACTIVETE-SPOILER";
@@ -9,10 +11,10 @@ let initialState = {
             {
                 category: "Разделы",
                 sub_categories: [
-                    {id: 1, sub_category: "Каталог", link: "/catalog/all-analyzes"},
-                    {id: 2, sub_category: "Услуги", link: "/service"},
-                    {id: 3, sub_category: "Пакеты", link: "/service/vac"},
-                    {id: 4, sub_category: "Акции", link: "/stocks"},
+                    {id: 1, sub_category: "Каталог анализов", link: ROUTES.catalog},
+                    {id: 2, sub_category: "Услуги клиники", link: ROUTES.services},
+                    {id: 3, sub_category: "Пакеты", link: ROUTES.servicePackages},
+                    {id: 4, sub_category: "Акции", link: ROUTES.stocks},
                 ],
                 id: 1,
                 spoilerActive: false,
@@ -20,10 +22,10 @@ let initialState = {
             {
                 category: "О компании",
                 sub_categories: [
-                    {id: 1, sub_category: "О нас", link: "/aboutus/"},
-                    {id: 2, sub_category: "Для клиентов", link: "/forclients"},
-                    {id: 3, sub_category: "Партнёрам", link: "/forpartners"},
-                    {id: 4, sub_category: "Документы", link: "/license"},
+                    {id: 1, sub_category: "О нас", link: ROUTES.aboutUs},
+                    {id: 2, sub_category: "Для клиентов", link: ROUTES.forClients},
+                    {id: 3, sub_category: "Партнёрам", link: ROUTES.forPartners},
+                    {id: 4, sub_category: "Документы", link: ROUTES.license},
                 ],
                 id: 2,
                 spoilerActive: false,

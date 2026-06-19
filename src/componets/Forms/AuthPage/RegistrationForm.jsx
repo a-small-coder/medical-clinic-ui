@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { getInitValuesFromCheckboxData } from '../CatalogPage/CatalogFilterForm';
 import FormikControl from '../BaseComponents/FormikControl';
 import ButtonsBlock from '../../SupportsComponents/ButtonsBlock';
+import { ROUTES } from '../../../config/routes';
 function RegistrationForm(props){
     const checkBoxOptions = [
         {
@@ -13,7 +14,7 @@ function RegistrationForm(props){
             chebox_value: true,
             link: {
                 text: "обработку персональных данных", 
-                ref: "/personal-conversations"
+                ref: ROUTES.personalDataPolicy
             }
         },
     ]

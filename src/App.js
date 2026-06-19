@@ -19,6 +19,20 @@ import { getStorageUserToken } from "./support_functions/utils";
 import { getCookie, setCookie } from 'react-use-cookie';
 import UserProfile from "./componets/UserProfilePage/UserProfile";
 import AboutUsConteiner from "./componets/AboutUs/AboutUsConteiner";
+import ForClientsPage from "./componets/InfoPages/ForClientsPage";
+import ForPartnersPage from "./componets/InfoPages/ForPartnersPage";
+import StocksPage from "./componets/InfoPages/StocksPage";
+import LocationPage from "./componets/Clinic/LocationPage";
+import LicensePage from "./componets/LegalPages/LicensePage";
+import PersonalDataPolicyPage from "./componets/LegalPages/PersonalDataPolicyPage";
+import TermsPage from "./componets/LegalPages/TermsPage";
+import CookiePolicyPage from "./componets/LegalPages/CookiePolicyPage";
+import ServicesListPage from "./componets/Clinic/ServicesListPage";
+import ServiceCardPage from "./componets/Clinic/ServiceCardPage";
+import DoctorsListPage from "./componets/Clinic/DoctorsListPage";
+import DoctorCardPage from "./componets/Clinic/DoctorCardPage";
+import BookingPage from "./componets/Clinic/BookingPage";
+import { LEGACY_REDIRECTS, ROUTES } from "./config/routes";
 
 function App(props) {
 
@@ -36,21 +50,44 @@ function App(props) {
 
   console.log('state', props.state)
 
+  const legacyRedirectRoutes = Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
+    <Route
+      key={from}
+      exact
+      path={from}
+      render={() => <Redirect to={to} />}
+    />
+  ))
+
   return (
     <BrowserRouter>
       <div className="wrapper _loaded">
         <ScrollToTop />
         <Header initSpoiler={props.initSpoiler} setSpoilerMode={props.setSpoilerMode} user={props.user} setCart={props.setCart}/>
         <Switch>
+          {legacyRedirectRoutes}
+          <Route exact path="/" component={MainPageContainer} />
+          <Route exact path={ROUTES.aboutUs} component={AboutUsConteiner} />
+          <Route exact path={ROUTES.forClients} component={ForClientsPage} />
+          <Route exact path={ROUTES.forPartners} component={ForPartnersPage} />
+          <Route exact path={ROUTES.license} component={LicensePage} />
+          <Route exact path={ROUTES.location} component={LocationPage} />
+          <Route exact path={ROUTES.stocks} component={StocksPage} />
+          <Route exact path={ROUTES.personalDataPolicy} component={PersonalDataPolicyPage} />
+          <Route exact path={ROUTES.terms} component={TermsPage} />
+          <Route exact path={ROUTES.cookiePolicy} component={CookiePolicyPage} />
+          <Route exact path={ROUTES.services} component={ServicesListPage} />
+          <Route exact path={`${ROUTES.services}/:slug`} component={ServiceCardPage} />
+          <Route exact path={ROUTES.doctors} component={DoctorsListPage} />
+          <Route exact path={`${ROUTES.doctors}/:id`} component={DoctorCardPage} />
+          <Route exact path={ROUTES.booking} component={BookingPage} />
           <Route exact path="/catalog" component={Catalog} />
           <Route exact path="/catalog/:category" component={Catalog} />
           <Route exact path="/catalog/:category/:id" component={ProductPageContainer} />
-          <Route exact path="/" component={MainPageContainer} />
           <Route path='/auth' component={AuthPageContainer} />
           <Route exact path="/cart" component={CartContainer}/>
           <Route path="/cart/order-conformation" component={OrderConformationContainer}/>
           <Route path="/user/profile/" component={UserProfile}/>
-          <Route path="/aboutus/" component={AboutUsConteiner}/>
           <Route component={InWork} />
         </Switch>
         <Footer />

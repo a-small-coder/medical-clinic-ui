@@ -3,6 +3,7 @@ import {Formik, Form} from 'formik';
 import * as Yup from 'yup'
 import { getInitValuesFromCheckboxData } from '../CatalogPage/CatalogFilterForm';
 import FormikControl from '../BaseComponents/FormikControl';
+import { ROUTES } from '../../../config/routes';
 
 function OrderConformationForm(props) {
 
@@ -31,7 +32,7 @@ function OrderConformationForm(props) {
             chebox_value: true,
             link: {
                 text: "обработку персональных данных", 
-                ref: "/personal-conversations"
+                ref: ROUTES.personalDataPolicy
             }
         },
     ]
