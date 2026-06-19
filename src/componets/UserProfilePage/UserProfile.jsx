@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import TopBlockTitle from '../SupportsComponents/TopBlockTitle';
 import ProfileNavigation from './ProfileNavigation';
 import '../../styles/ProfilePage/ProfilePage.scss'
@@ -7,10 +7,21 @@ import { Redirect } from 'react-router-dom';
 import { AUTHENTIFICATION, redirectByPageType } from '../../App';
 import { connect } from 'react-redux';
 import SERVER_API_START_URL, { getApiResponse, postApiRequest } from '../../support_functions/api_requests';
+import { getAppointmentsForUser } from '../../support_functions/appointmentStorage';
 
 function UserProfile(props) {
 
     const [userOrders, setUserOrders] = useState([])
+    const userAppointments = useMemo(() => {
+        if (!props.auth.user?.token || props.auth.user?.is_anon) {
+            return [];
+        }
+
+        return getAppointmentsForUser({
+            userId: props.auth.user.userId,
+            email: props.auth.user.email,
+        });
+    }, [props.auth.user]);
     const [profileMessage, setProfileMessage] = useState(null)
     const TitleWrapperClass = "user-profile-page__top-block"
     const page_title = "Личный кабинет"
@@ -24,7 +35,8 @@ function UserProfile(props) {
     const navigation_categories = [
         {id: 1, title: 'Общая информация', slug: 'base_information'},
         {id: 2, title: 'История заказов', slug: 'orders'},
-        {id: 3, title: 'Сменить пароль', slug: 'change_password'},
+        {id: 3, title: 'Мои записи', slug: 'appointments'},
+        {id: 4, title: 'Сменить пароль', slug: 'change_password'},
     ]
 
     if (props.auth.user.is_anon == null || props.auth.user.is_anon){
@@ -84,7 +96,8 @@ function UserProfile(props) {
                             <ContentController 
                                 control={currentPage} 
                                 user_info={user_info} 
-                                orders={userOrders} 
+                                orders={userOrders}
+                                appointments={userAppointments}
                                 location={props.history.location.pathname} 
                                 onInfoSubmit={userInfoSubmitHandler}
                                 onPasswordSubmit={changePasswordSubmithandler}

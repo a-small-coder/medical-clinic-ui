@@ -33,7 +33,7 @@ import ServicesListPage from "./componets/Clinic/Services/ServicesListPage";
 import ServiceCardPage from "./componets/Clinic/Services/ServiceCardPage";
 import DoctorsListPage from "./componets/Clinic/Doctors/DoctorsListPage";
 import DoctorCardPage from "./componets/Clinic/Doctors/DoctorCardPage";
-import BookingPage from "./componets/Clinic/BookingPage";
+import BookingPage from "./componets/Booking/BookingPage";
 import { LEGACY_REDIRECTS, ROUTES } from "./config/routes";
 
 function App(props) {
