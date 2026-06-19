@@ -29,10 +29,10 @@ import PersonalDataConsentPage from "./componets/LegalPages/PersonalDataConsentP
 import TermsPage from "./componets/LegalPages/TermsPage";
 import CookiePolicyPage from "./componets/LegalPages/CookiePolicyPage";
 import CookieBanner from "./componets/SupportsComponents/CookieBanner";
-import ServicesListPage from "./componets/Clinic/ServicesListPage";
-import ServiceCardPage from "./componets/Clinic/ServiceCardPage";
-import DoctorsListPage from "./componets/Clinic/DoctorsListPage";
-import DoctorCardPage from "./componets/Clinic/DoctorCardPage";
+import ServicesListPage from "./componets/Clinic/Services/ServicesListPage";
+import ServiceCardPage from "./componets/Clinic/Services/ServiceCardPage";
+import DoctorsListPage from "./componets/Clinic/Doctors/DoctorsListPage";
+import DoctorCardPage from "./componets/Clinic/Doctors/DoctorCardPage";
 import BookingPage from "./componets/Clinic/BookingPage";
 import { LEGACY_REDIRECTS, ROUTES } from "./config/routes";
 

@@ -12,9 +12,10 @@ let initialState = {
                 category: "Разделы",
                 sub_categories: [
                     {id: 1, sub_category: "Каталог анализов", link: ROUTES.catalog},
-                    {id: 2, sub_category: "Услуги клиники", link: ROUTES.services},
-                    {id: 3, sub_category: "Пакеты", link: ROUTES.servicePackages},
-                    {id: 4, sub_category: "Акции", link: ROUTES.stocks},
+                    {id: 2, sub_category: "Врачи", link: ROUTES.doctors},
+                    {id: 3, sub_category: "Услуги клиники", link: ROUTES.services},
+                    {id: 4, sub_category: "Пакеты", link: ROUTES.servicePackages},
+                    {id: 5, sub_category: "Акции", link: ROUTES.stocks},
                 ],
                 id: 1,
                 spoilerActive: false,
