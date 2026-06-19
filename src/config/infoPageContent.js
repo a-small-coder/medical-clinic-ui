@@ -1,4 +1,5 @@
 import { ROUTES } from './routes';
+import { CLINIC_NAME, PARTNERS_CONTACT } from './clinicDemo';
 
 export const CLINIC_STATS = [
   { id: 1, title: '15+', text: 'лет работы' },
@@ -12,7 +13,7 @@ export const ABOUT_US_CONTENT = {
       id: 1,
       title: 'Наша история',
       paragraphs: [
-        'Клиника «Здоровье+» работает с 2010 года и объединяет амбulatorное лечение, диагностику и лабораторные исследования в одном цифровом сервисе.',
+        `${CLINIC_NAME} работает с 2010 года и объединяет амбulatorное лечение, диагностику и лабораторные исследования в одном цифровом сервисе.`,
         'Мы развиваем онлайн-запись, личный кабинет пациента и удобный заказ анализов с выбором места сдачи — дома или в клинике.',
       ],
     },
@@ -100,9 +101,9 @@ export const FOR_PARTNERS_SECTIONS = [
 export const FOR_PARTNERS_CONTACT = {
   title: 'Контакты для партнёров',
   paragraphs: [
-    'Email: partners@zdorovie-plus.demo',
-    'Телефон: +7 (495) 000-00-01 (доб. 200)',
-    'Часы работы отдела: пн–пт, 9:00–18:00',
+    `Email: ${PARTNERS_CONTACT.email}`,
+    `Телефон: ${PARTNERS_CONTACT.phone}`,
+    `Часы работы отдела: ${PARTNERS_CONTACT.schedule}`,
   ],
 };
 

@@ -5,6 +5,8 @@ import MenuItem from './MenuItem';
 import { Link } from 'react-router-dom';
 import * as axios from 'axios'
 import urlStart from '../../../support_functions/api_requests'
+import { ROUTES } from '../../../config/routes';
+import { CLINIC_LOGO } from '../../../config/clinicDemo';
 
 const FALLBACK_CATEGORIES = [
     {
@@ -49,7 +51,7 @@ const HeaderMain = (props) => {
 
     return (
         <div className="header__main">
-            <Link to={"/"} className="header__logo">Med.</Link>
+            <Link to={ROUTES.home} className="header__logo">{CLINIC_LOGO}</Link>
             <div className="header__menu menu">
                 <nav className="menu__body">
                     <ul data-spollers="768, max" className={spoilerClassName}>

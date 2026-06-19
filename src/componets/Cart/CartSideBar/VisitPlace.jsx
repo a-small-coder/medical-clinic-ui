@@ -1,11 +1,12 @@
 import React from 'react';
+import { CLINIC_CITY } from '../../../config/clinicDemo';
 
 function VisitPlace(props) {
     return (
         <div className="cart-info__visit-place visit-place">
                 <div className="visit-place__region ">
                     <div className="visit-place__item _icon-location">
-                        Москва
+                        {CLINIC_CITY}
                     </div>
                 </div>
                 <div className="visit-place__office">

@@ -4,11 +4,13 @@ import { setCookie } from 'react-use-cookie';
 import { setCustomerAC } from '../../../redux/order-reducer';
 import OrderConformationForm from '../../Forms/CartPage/OrderConformationForm';
 import OfficeVisitOption from './OfficeVisitOption';
+import { getSampleCollectionOffice } from '../../../config/clinicDemo';
 
 function CartInfoFormControl(props) {
     const {control, ...rest} = props
 
-    const [office_addres, setOfficeAddres] = useState('Палата №6 (ул. Лечебная)')
+    const sampleOffice = getSampleCollectionOffice();
+    const [office_addres] = useState(sampleOffice?.officeLabel ?? '')
 
     let user = {...props.userData}
     
