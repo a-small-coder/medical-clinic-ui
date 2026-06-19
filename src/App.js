@@ -29,6 +29,7 @@ import PersonalDataConsentPage from "./componets/LegalPages/PersonalDataConsentP
 import TermsPage from "./componets/LegalPages/TermsPage";
 import CookiePolicyPage from "./componets/LegalPages/CookiePolicyPage";
 import CookieBanner from "./componets/SupportsComponents/CookieBanner";
+import DemoSiteBanner from "./componets/SupportsComponents/DemoSiteBanner";
 import ServicesListPage from "./componets/Clinic/Services/ServicesListPage";
 import ServiceCardPage from "./componets/Clinic/Services/ServiceCardPage";
 import DoctorsListPage from "./componets/Clinic/Doctors/DoctorsListPage";
@@ -92,6 +93,7 @@ function App(props) {
           <Route component={InWork} />
         </Switch>
         <Footer />
+        <DemoSiteBanner />
         <CookieBanner />
       </div>
     </BrowserRouter>

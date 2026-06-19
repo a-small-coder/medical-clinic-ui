@@ -1,0 +1,76 @@
+.demo-site-banner {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+  }
+
+  &__dialog {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
+    padding: 24px;
+  }
+
+  &__badge {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 4px 12px;
+    border-radius: 30px;
+    background: #DBF4FC;
+    color: #0FC0FC;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 0 0 12px;
+    font-size: calc(18px + 4 * ((100vw - 320px) / 950));
+    line-height: 130%;
+  }
+
+  &__text {
+    margin: 0 0 20px;
+    color: #898989;
+    line-height: 150%;
+    font-size: 14px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .demo-site-banner__dialog {
+    padding: 20px 16px;
+  }
+
+  .demo-site-banner__actions {
+    justify-content: stretch;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
