@@ -25,8 +25,10 @@ import StocksPage from "./componets/InfoPages/StocksPage";
 import LocationPage from "./componets/Clinic/LocationPage";
 import LicensePage from "./componets/LegalPages/LicensePage";
 import PersonalDataPolicyPage from "./componets/LegalPages/PersonalDataPolicyPage";
+import PersonalDataConsentPage from "./componets/LegalPages/PersonalDataConsentPage";
 import TermsPage from "./componets/LegalPages/TermsPage";
 import CookiePolicyPage from "./componets/LegalPages/CookiePolicyPage";
+import CookieBanner from "./componets/SupportsComponents/CookieBanner";
 import ServicesListPage from "./componets/Clinic/ServicesListPage";
 import ServiceCardPage from "./componets/Clinic/ServiceCardPage";
 import DoctorsListPage from "./componets/Clinic/DoctorsListPage";
@@ -74,6 +76,7 @@ function App(props) {
           <Route exact path={ROUTES.location} component={LocationPage} />
           <Route exact path={ROUTES.stocks} component={StocksPage} />
           <Route exact path={ROUTES.personalDataPolicy} component={PersonalDataPolicyPage} />
+          <Route exact path={ROUTES.personalDataConsent} component={PersonalDataConsentPage} />
           <Route exact path={ROUTES.terms} component={TermsPage} />
           <Route exact path={ROUTES.cookiePolicy} component={CookiePolicyPage} />
           <Route exact path={ROUTES.services} component={ServicesListPage} />
@@ -91,6 +94,7 @@ function App(props) {
           <Route component={InWork} />
         </Switch>
         <Footer />
+        <CookieBanner />
       </div>
     </BrowserRouter>
   );

@@ -12,6 +12,7 @@ export const ROUTES = {
   doctors: '/doctors',
   booking: '/booking',
   personalDataPolicy: '/personal-data-policy',
+  personalDataConsent: '/personal-data-consent',
   terms: '/terms',
   cookiePolicy: '/cookie-policy',
 };

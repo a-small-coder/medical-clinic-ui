@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../config/routes';
+import FooterPersonalDataOperator from './FooterPersonalDataOperator';
 
 const FooterMain = () => {
     return (
@@ -15,6 +16,7 @@ const FooterMain = () => {
                 <Link to="/tel:+74950000000" className="contacts-footer__item _icon-phone">+7 (495) 000-00-00</Link>
                 <Link to={ROUTES.home} target="_blank" className="contacts-footer__item">demo.example.com</Link>
             </div>
+            <FooterPersonalDataOperator />
         </div>
     );
 }
