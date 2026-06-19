@@ -1,16 +1,45 @@
-import {setCartAC, setCategoriesAC} from '../../../redux/header-reducer'
+import { useEffect, useRef } from 'react';
+import {setCategoriesAC} from '../../../redux/header-reducer'
 import {connect} from 'react-redux';
 import MenuItem from './MenuItem';
 import { Link } from 'react-router-dom';
 import * as axios from 'axios'
 import urlStart from '../../../support_functions/api_requests'
-const HeaderMain = (props) => {
 
-    if (props.categories.length === 0){
-        axios.get(`${urlStart}navigation/`).then(response => {
-            props.setCategories(response.data)
-        })
-    }
+const FALLBACK_CATEGORIES = [
+    {
+        id: 1,
+        category: 'Каталог',
+        slug: 'catalog',
+        sub_categories: [
+            { id: 1, sub_category: 'Все анализы', slug: 'all-analyzes' },
+            { id: 2, sub_category: 'Комплексы', slug: 'complex-analyzes' },
+        ],
+    },
+];
+
+const HeaderMain = (props) => {
+    const navigationLoaded = useRef(false);
+
+    useEffect(() => {
+        if (navigationLoaded.current || props.categories.length > 0) {
+            return;
+        }
+        navigationLoaded.current = true;
+
+        axios.get(`${urlStart}navigation/`)
+            .then(response => {
+                const data = response.data;
+                if (Array.isArray(data) && data.length > 0) {
+                    props.setCategories(data);
+                } else {
+                    props.setCategories(FALLBACK_CATEGORIES);
+                }
+            })
+            .catch(() => {
+                props.setCategories(FALLBACK_CATEGORIES);
+            });
+    }, [props.categories.length, props.setCategories]);
 
     const spoilerClassName = "menu__list";
 
@@ -50,4 +79,3 @@ let mapDispatchToProps = (dispatch)=>{
 const HeaderMainContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderMain);
 
 export default HeaderMainContainer;
-

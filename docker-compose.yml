@@ -3,15 +3,15 @@
 # Структура:
 #   medical-clinic/
 #     medical-clinic-prod-back/
-#     medical-clinic-ui/          ← этот репозиторий (здесь лежит docker-compose.yml)
+#     medical-clinic-ui/
 #
 # Запуск:
 #   cd /home/medical-clinic/medical-clinic-ui
 #   docker compose up -d --build
 #
-# Порты на хосте (8000 занят другими проектами):
-#   frontend → http://SERVER:8090
-#   backend  → http://SERVER:8080  (прямой доступ к API, опционально)
+#   Frontend: http://188.225.58.30:8090
+#   Backend:  http://188.225.58.30:8080
+#   Admin:    http://188.225.58.30:8090/admin/
 
 services:
   backend:
@@ -24,6 +24,7 @@ services:
       SECRET_KEY: ${SECRET_KEY:-change-me-in-production}
       DEBUG: ${DEBUG:-False}
       USE_S3: ${USE_S3:-False}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://188.225.58.30:8090}
       DATABASE_URL: ${DATABASE_URL:-sqlite:////data/db.sqlite3}
     volumes:
       - app_data:/data
@@ -39,6 +40,8 @@ services:
     restart: unless-stopped
     ports:
       - "8090:80"
+    volumes:
+      - app_media:/app/media:ro
     depends_on:
       - backend
 

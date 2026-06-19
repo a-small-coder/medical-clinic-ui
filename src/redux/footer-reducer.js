@@ -20,7 +20,7 @@ let initialState = {
             {
                 category: "О компании",
                 sub_categories: [
-                    {id: 1, sub_category: "О нас", link: "/about-us"},
+                    {id: 1, sub_category: "О нас", link: "/aboutus/"},
                     {id: 2, sub_category: "Для клиентов", link: "/forclients"},
                     {id: 3, sub_category: "Партнёрам", link: "/forpartners"},
                     {id: 4, sub_category: "Документы", link: "/license"},
