@@ -13,8 +13,10 @@ const AuthPageBody = (props) => {
 
     function authUser (userdata, errorMessageSetter, errorFieldName, needRemember=false) {
         const loginUrl = AUTH_URL
-            
+        props.setIsLoading(true)
+
             const goodResponseHandler = (response)=>{
+                props.setIsLoading(false)
                 if (response.status === 200){
                     props.setIsAuth(true)
                     props.setIsNeedRedirect(true)
@@ -32,9 +34,11 @@ const AuthPageBody = (props) => {
                 }           
             }
             const badResponseHandler = (err) => {
+                props.setIsLoading(false)
                 if (err.response){
                     if (err.response.status === 400){
                         errorMessageSetter(errorFieldName, "Неверный логин или пароль")
+                        return
                     }
                 }
                 errorMessageSetter(errorFieldName, "Что-то пошло не так, перезагрузите страницу и попробуйте снова")
@@ -43,26 +47,29 @@ const AuthPageBody = (props) => {
     }
 
     const onSubmitLoginForm = (formData, errorMessageSetter, errorFieldName) =>{
-        console.log("Form data", formData)
         const userData = JSON.stringify(formData)
         authUser(userData, errorMessageSetter, errorFieldName, formData.rememberMe)
     }
     const onSubmitRegisterForm = (formData, errorMessageSetter, errorFieldName) =>{
-        console.log("Form data", formData)
+        props.setIsLoading(true)
         const registerUrl = `${urlStart}auth/register/register_user/`
         const userData = JSON.stringify(formData)
         const goodResponseHandler = (response)=>{
             if (response.status === 200){
                 let userdata = {}
-                console.log("new username", response.data.username)
                 userdata.username = response.data.username
                 userdata.password = formData.password
                 authUser(userdata, errorMessageSetter, errorFieldName)
+            } else {
+                props.setIsLoading(false)
             }           
         }
         const badResponseHandler = (err) => {
-            if (err.response.status === 400){
+            props.setIsLoading(false)
+            if (err.response && err.response.status === 400){
                 errorMessageSetter(errorFieldName, err.response.data.detail)
+            } else {
+                errorMessageSetter(errorFieldName, "Что-то пошло не так, перезагрузите страницу и попробуйте снова")
             }
         }
         postApiRequest(registerUrl, userData, goodResponseHandler, badResponseHandler)
@@ -119,4 +126,3 @@ let mapDispatchToProps = (dispatch)=>{
 const AuthPageContainer = connect(mapStateToProps, mapDispatchToProps)(AuthPageBody);
 
 export default AuthPageContainer;
-

@@ -1,22 +1,25 @@
 import React from 'react';
 import {Formik, Form} from 'formik';
 import * as Yup from 'yup'
+import { connect } from 'react-redux';
 import FormikControl from '../BaseComponents/FormikControl';
+import { setCurrentPageAC, setSearchTextAC } from '../../../redux/catalog-reducer';
 
 function CatalogSearchForm(props) {
 
     const initialValues = {
-        searchText: '',
+        searchText: props.searchText || '',
     }
 
     const validation = Yup.object({})
 
     const onSubmit = values =>{
-        console.log("Form data", values)
+        props.setSearchText(values.searchText.trim())
+        props.setCurrentPage(1)
     }
 
     return (
-        <Formik initialValues={initialValues} validationSchema={validation} onSubmit={onSubmit}>
+        <Formik initialValues={initialValues} validationSchema={validation} onSubmit={onSubmit} enableReinitialize>
             {
                 ({errors, touched, isValid, handleBlur}) => {
                     return (
@@ -47,4 +50,13 @@ function CatalogSearchForm(props) {
     );
 }
 
-export default CatalogSearchForm;
+const mapStateToProps = (state) => ({
+    searchText: state.catalog.searchText,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    setSearchText: (searchText) => dispatch(setSearchTextAC(searchText)),
+    setCurrentPage: (page) => dispatch(setCurrentPageAC(page)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogSearchForm);

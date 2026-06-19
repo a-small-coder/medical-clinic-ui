@@ -3,7 +3,7 @@ import Content from './Content';
 import Slider from './Slider';
 const TopService = (props) => {
     if (props.serviceData.slides.length === 0){
-        return <div>Loading...</div>
+        return <div>Загрузка...</div>
     }
     return (
         <section className="page__main-slider main-slider">

@@ -4,7 +4,7 @@ import TableRow from './TableRow';
 
 function UserOrders(props) {
 
-    if (props.orders){
+    if (props.orders && props.orders.length > 0){
         let orders = props.orders.map((o, i) => (
             <TableRow key={o.id} number={o.id} status={o.status} date_create={o.date_create} odd_number={i % 2 === 1}/>
         ))

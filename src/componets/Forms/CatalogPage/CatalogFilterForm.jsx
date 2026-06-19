@@ -12,7 +12,6 @@ function CatalogFilterForm(props) {
     const validation = Yup.object({})
 
     const onSubmit = (values) =>{
-        console.log("Form data", values);
         props.onSubmitForm(values);
     }
     

@@ -50,8 +50,6 @@ function App(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [oldToken])
 
-  console.log('state', props.state)
-
   const legacyRedirectRoutes = Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
     <Route
       key={from}

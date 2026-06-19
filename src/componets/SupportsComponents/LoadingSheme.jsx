@@ -8,7 +8,7 @@ const LoadingSheme = (props) =>{
                 <section className="page__base base-block">
                     <div className="base-block__container _container">
                         <div className="base-block__content loading-block">
-                            Loading...
+                            Загрузка...
                         </div>
                     </div>
                 </section>
@@ -18,14 +18,14 @@ const LoadingSheme = (props) =>{
     else if (props.block) {
         return (
             <div className="base-block__content loading-block">
-                Loading...
+                Загрузка...
             </div>
         )
     }
     else {
         return (
             <div className="base-block__content loading-block">
-                Loading...
+                Загрузка...
             </div>
         )
     }

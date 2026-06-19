@@ -1,6 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { updateNewSearchTextAC } from '../../../redux/header-reducer';
+import { setCurrentPageAC, setSearchTextAC } from '../../../redux/catalog-reducer';
+import { ROUTES } from '../../../config/routes';
 
 const HeaderSearch = (props) => {
     const inputSearchRef = React.useRef();
@@ -21,25 +24,29 @@ const HeaderSearch = (props) => {
         }
     };
 
-    const onSearchChange = () =>{
-        let text = inputSearchRef.current.value;
-        props.updateNewSearchText(text);
+    const onSearchChange = (event) =>{
+        props.updateNewSearchText(event.target.value);
     }
-    const onSearchClick = () =>{
-        let text = inputSearchRef.current.value;
-        if (props.search.defaultSearchText === text){
-            props.updateNewSearchText("");
+
+    const submitSearch = (event) => {
+        event.preventDefault();
+        const text = props.search.newSearchText.trim();
+        props.setSearchText(text);
+        props.setCurrentPage(1);
+        props.history.push(ROUTES.catalog);
+        if (searchFormRef.current) {
+            searchFormRef.current.classList.remove('_active');
         }
-        
     }
+
     return(
         <div className="header__search">
             <div className="search-form" ref={searchFormRef}>
                 <button data-spoller type="button" className="search-form__icon _icon-search" ref={iconSearchRef} onClick={iconSearchClick}></button>
-                <form action="#" className="search-form__item">
-                    <button data-spoller type="button" className="search-form__btn _icon-search"></button>
-                    <input autoComplete="off" type="text" name="form[]" className="search-form__input" 
-                    value={props.search.newSearchText} onChange={onSearchChange} onClick={onSearchClick} ref={inputSearchRef}/>
+                <form action="#" className="search-form__item" onSubmit={submitSearch}>
+                    <button type="submit" className="search-form__btn _icon-search"></button>
+                    <input autoComplete="off" type="text" name="search" className="search-form__input" 
+                    value={props.search.newSearchText} onChange={onSearchChange} ref={inputSearchRef}/>
                 </form>
             </div>
         </div>
@@ -56,9 +63,15 @@ let mapDispatchToProps = (dispatch)=>{
         updateNewSearchText: (text) => {
             dispatch(updateNewSearchTextAC(text));
         },
+        setSearchText: (searchText) => {
+            dispatch(setSearchTextAC(searchText));
+        },
+        setCurrentPage: (page) => {
+            dispatch(setCurrentPageAC(page));
+        },
     }
 }
 
-const HeaderSearchContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderSearch);
+const HeaderSearchContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderSearch));
 
 export default HeaderSearchContainer;

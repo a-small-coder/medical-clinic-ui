@@ -1,32 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Achivments from './Achivments/Achivments';
 import AnalyzeComplexes from './AnalyzeComplexes/AnalyzeComplexes';
 import UnicProducts from './UnicProducts/UnicProducts';
 import TopService from './TopService/TopService';
-import Stocks from './Stocks/Stocks';
 import AboutUs from './AboutUs/AboutUs';
 import { connect } from 'react-redux';
-import { setProductsAC, setAboutUsAC, setAchivmentsSmallAC, setAnalyzesComplexesAC, setCurrentPageUnicProductsAC, setStocksAC, setTopServisesAC, setTopServisesSlidesAC } from '../../redux/mainPage-reducer';
+import { setProductsAC, setAboutUsAC, setAchivmentsSmallAC, setAnalyzesComplexesAC, setCurrentPageUnicProductsAC, setTopServisesSlidesAC } from '../../redux/mainPage-reducer';
 import urlStart, { getApiResponse } from '../../support_functions/api_requests';
 import LoadingSheme from '../SupportsComponents/LoadingSheme';
 
 const MainPage = (props) => {
 
     const [Badresponse, setNeedRedirect] = useState(false);
-    useEffect(() =>{
-        if (Badresponse){
-            console.log("hey! it's a bad response")
-        }
-        
-    }, [Badresponse])
 
-    useEffect(() => {
+    const loadMainPageData = useCallback(() => {
+        setNeedRedirect(false)
         const bestProductsUrl = `${urlStart}best-products/`
         const bestComplexesUrl = `${urlStart}best-complex-analyzes/`
         const aboutUsUrl = `${urlStart}about-us/`
         const achievementsUrl = `${urlStart}achievements/`
         const uniqueAnalyzesUrl = `${urlStart}catalog/unic-analyzes?page=${props.pageNumber}&count=${props.pageSize}`
-        // for unique analyzes
         const mapGoodResponseDataForProducts = (data) =>{
             props.setProducts(data.items, data.total_count, data.page_size)
         }
@@ -41,7 +34,11 @@ const MainPage = (props) => {
             getApiResponse(uniqueAnalyzesUrl, false, mapGoodResponseDataForProducts, badResponseHandler)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [props.pageNumber, props.pageSize])
+
+    useEffect(() => {
+        loadMainPageData()
+    }, [loadMainPageData])
 
     const [buttonIsHiden, setButtonIsHidden] = useState(false)
     const showMoreClickHandler = () => {
@@ -60,6 +57,24 @@ const MainPage = (props) => {
         const uniqueAnalyzesUrl = `${urlStart}catalog/unic-analyzes?page=${props.pageNumber + 1}&count=${props.pageSize}`
         getApiResponse(uniqueAnalyzesUrl, false, mapGoodResponseDataForProducts, badResponseHandler)
         props.setCurrentPage(props.pageNumber + 1)
+    }
+
+    if (Badresponse) {
+        return (
+            <main className="page">
+                <section className="page__base base-block">
+                    <div className="base-block__container _container">
+                        <div className="base-block__content notFound">
+                            <h2 className="notFound__title _title">Не удалось загрузить данные</h2>
+                            <div className="notFound__text">Проверьте подключение к интернету и попробуйте снова.</div>
+                            <button type="button" className="notFound__more btn" onClick={loadMainPageData}>
+                                Повторить
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        )
     }
 
     
@@ -81,10 +96,6 @@ const MainPage = (props) => {
            {props.analiyzesComplex.length !== 0 ?
             <AnalyzeComplexes analyzes={props.analiyzesComplex}/>: 
             <LoadingSheme block={true}/>} 
-
-            {/* {props.mainPage.stocks.length !== 0 ?
-            <Stocks stocks={props.mainPage.stocks}/> : 
-            <LoadingSheme block={true}/>}   */}
             
             {props.aboutUs.length !== 0 ?
             <AboutUs aboutUs={props.aboutUs}/>: 
@@ -109,17 +120,11 @@ let mapDispatchToProps = (dispatch)=>{
         setProducts: (items, totalCount, pageSize) => {
             dispatch(setProductsAC(items, totalCount, pageSize));
         },
-        setTopServises: (content, slides) =>{
-            dispatch(setTopServisesAC(content, slides));
-        },
         setTopServisesSlides: (slides) =>{
             dispatch(setTopServisesSlidesAC(slides))
         },
         setAchivmentsSmall: (achivments) => {
             dispatch(setAchivmentsSmallAC(achivments))
-        },
-        setStocks: (stocks) => {
-            dispatch(setStocksAC(stocks))
         },
         setAboutUs: (aboutUs) => {
             dispatch(setAboutUsAC(aboutUs))

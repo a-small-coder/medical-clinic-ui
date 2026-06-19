@@ -18,13 +18,14 @@ const Products = (props) => {
     const [Badresponse, setNeedRedirect] = useState(false);
     useEffect(() =>{
         if (Badresponse){
-            console.log("hey! it's a bad response")
+            return
         }
         
     }, [Badresponse])
 
     const sendRequestForGetProducts = (pageNumber)=>{
-        const productsApiUrl = `${urlStart}${apiLink}?page=${pageNumber}&count=${props.pageSize}`
+        const searchQuery = props.searchText ? `&search=${encodeURIComponent(props.searchText)}` : ''
+        const productsApiUrl = `${urlStart}${apiLink}?page=${pageNumber}&count=${props.pageSize}${searchQuery}`
         const mapProductsDataResponse = (data) =>{
             props.setProducts(data.items, data.total_count, catagoryName, data.page_size)
         }
@@ -70,8 +71,13 @@ const Products = (props) => {
 
     let productsElements
     let pagesCount = Math.ceil(props.totalCount / props.pageSize)
+    const normalizedSearch = props.searchText.trim().toLowerCase()
+    const filteredItems = normalizedSearch
+        ? props.products.items.filter((item) => item.title.toLowerCase().includes(normalizedSearch))
+        : props.products.items
+
     if (props.products.items != null){
-        productsElements = props.products.items.map(
+        productsElements = filteredItems.map(
             a => {
                 const isInCart = isProductInCart(a.id, props.cart.products)
             return <Product key={a.id} id={a.id} title={a.title} time={a.time} number={a.number}
@@ -98,6 +104,16 @@ const Products = (props) => {
 
         )
     }
+    if (props.products.items.length > 0 && filteredItems.length === 0) {
+        return (
+            <div className="analyze-section">
+                <h2 className="analyze-section__title _title">{props.products.title[titleKey]}</h2>
+                <div className="text-content__article">
+                    <div className="text">Ничего не найдено</div>
+                </div>
+            </div>
+        )
+    }
     return (
         <div className="analyze-section">
             <LoadingSheme block={true}/>
@@ -113,7 +129,8 @@ let mapStateToProps = (state)=>{
         pageNumber: state.catalog.products.currentPage,
         countProductsInCart: state.header.cart.total_products,
         cart: state.header.cart,
-        userToken: state.auth.user.token
+        userToken: state.auth.user.token,
+        searchText: state.catalog.searchText || '',
     }
 }
 let mapDispatchToProps = (dispatch)=>{

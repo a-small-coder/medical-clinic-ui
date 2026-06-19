@@ -4,9 +4,11 @@ const DISACTIVATE_CHECKBOX = "DISACTIVATE_CHECKBOX";
 const CHANGE_FILTER_POPUP_SHOW_STATE = "CHANGE_FILTER_POPUP_SHOW_STATE"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_PRODUCTS_CATEGORY = "SET_PRODUCTS_CATEGORY";
+const SET_SEARCH_TEXT = "SET-SEARCH-TEXT";
 const BAD_CATEGORY = "BAD_CATEGORY";
 
 let initialState = {
+    searchText: '',
     products: {
         totalCount: 8,
         currentPage: 1,
@@ -111,6 +113,9 @@ const catalogReducer = (state = initialState, action) =>{
             stateCopy.products = {...state.products, currentPage: action.currentPage}
             return stateCopy;
         }
+        case SET_SEARCH_TEXT: {
+            return {...state, searchText: action.searchText};
+        }
         default:
             return state;
     }
@@ -122,4 +127,5 @@ export const activateCheckBoxAC = (categorySlug, categoryItems, active_count) =>
 export const disactiveteCheckBoxAC = (categorySlug, itemSlug) =>({type: DISACTIVATE_CHECKBOX, categorySlug: categorySlug, itemSlug: itemSlug});
 export const showHiddenPopupAC = (current_category) => ({type: CHANGE_FILTER_POPUP_SHOW_STATE, current_category: current_category});
 export const setCurrentPageAC = (totalPage) =>({type: SET_CURRENT_PAGE, currentPage: totalPage});
+export const setSearchTextAC = (searchText) => ({type: SET_SEARCH_TEXT, searchText});
 export default catalogReducer;

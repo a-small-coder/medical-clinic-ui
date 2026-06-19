@@ -151,4 +151,26 @@ export function createOrder(token, data, setCart){
       }
     postApiRequest(url, data, setNewCartResponse, ()=>{}, token)
 }
+
+// Task 13 — appointments API stubs (not used in demo/localStorage flow)
+export function getAppointmentSlots(params, onSuccess, onError) {
+  const query = new URLSearchParams(params).toString();
+  const url = `${SERVER_API_START_URL}appointments/slots/?${query}`;
+  getApiResponse(url, false, onSuccess, onError);
+}
+
+export function createAppointment(data, token, onSuccess, onError) {
+  const url = `${SERVER_API_START_URL}appointments/`;
+  postApiRequest(url, data, onSuccess, onError, token);
+}
+
+export function getMyAppointments(token, onSuccess, onError) {
+  const url = `${SERVER_API_START_URL}appointments/my/`;
+  getApiResponse(url, token, onSuccess, onError);
+}
+
+export function getAppointmentByIdApi(id, token, onSuccess, onError) {
+  const url = `${SERVER_API_START_URL}appointments/${id}/`;
+  getApiResponse(url, token, onSuccess, onError);
+}
   

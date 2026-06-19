@@ -11,7 +11,7 @@ import SERVER_API_START_URL, { getApiResponse, postApiRequest } from '../../supp
 function UserProfile(props) {
 
     const [userOrders, setUserOrders] = useState([])
-    // const [isSend, setIsSend] = useState(false)
+    const [profileMessage, setProfileMessage] = useState(null)
     const TitleWrapperClass = "user-profile-page__top-block"
     const page_title = "Личный кабинет"
 
@@ -27,13 +27,10 @@ function UserProfile(props) {
         {id: 3, title: 'Сменить пароль', slug: 'change_password'},
     ]
 
-    // user has not authentificate
-    
     if (props.auth.user.is_anon == null || props.auth.user.is_anon){
         return redirectByPageType(AUTHENTIFICATION)
     }
 
-    // get subcomponent's control from url
     let currentPage = props.history.location.pathname.split('/')[3]
     if (currentPage === ''){
         return <Redirect to="/user/profile/base_information"/>
@@ -53,10 +50,10 @@ function UserProfile(props) {
         }
     }
     const userInfoSubmitHandler = (formdata) =>{
-        updateUserData(props.auth.user.token, formdata)
+        updateUserData(props.auth.user.token, formdata, setProfileMessage)
     }
     const changePasswordSubmithandler = (formdata) => {
-        changeUserPassword(props.auth.user.token, formdata)
+        changeUserPassword(props.auth.user.token, formdata, setProfileMessage)
     }
 
     return (
@@ -67,6 +64,17 @@ function UserProfile(props) {
                         title={page_title}
                         wrapperClass={TitleWrapperClass}
                     />
+                    {profileMessage && (
+                        <div
+                            className="user-profile-page__message"
+                            style={{
+                                marginBottom: '16px',
+                                color: profileMessage.type === 'error' ? '#c0392b' : '#2e7d32',
+                            }}
+                        >
+                            {profileMessage.text}
+                        </div>
+                    )}
                     <div className="user-profile-page__content">
                         <div className="user-profile-page__navigation navigation-profile">
                             <ProfileNavigation categories={navigation_categories}/>
@@ -100,28 +108,37 @@ let mapDispatchToProps = (dispatch)=>{
 const UserProfileContainer = connect(mapStateToProps, mapDispatchToProps)(UserProfile);
 export default UserProfileContainer;
 
-function updateUserData(token, data){
+function updateUserData(token, data, setProfileMessage){
     const url = `${SERVER_API_START_URL}auth/users/update_user_data/`
-    const responseHandler = (responseData) => {
-      console.log(responseData)
+    const responseHandler = () => {
+      setProfileMessage({ type: 'success', text: 'Данные сохранены' })
+    }
+    const errorHandler = () => {
+      setProfileMessage({ type: 'error', text: 'Не удалось сохранить данные. Попробуйте позже.' })
     }
   
-    postApiRequest(url, data, responseHandler, ()=>{}, token)
+    postApiRequest(url, data, responseHandler, errorHandler, token)
   }
 
-  function changeUserPassword(token, data){
+  function changeUserPassword(token, data, setProfileMessage){
     const url = `${SERVER_API_START_URL}auth/users/change_password/`
-    const responseHandler = (responseData) => {
-      console.log(responseData)
+    const responseHandler = () => {
+      setProfileMessage({ type: 'success', text: 'Пароль изменён' })
+    }
+    const errorHandler = (err) => {
+      const detail = err?.response?.data?.detail
+      setProfileMessage({
+        type: 'error',
+        text: detail || 'Не удалось изменить пароль. Проверьте текущий пароль.',
+      })
     }
   
-    postApiRequest(url, data, responseHandler, ()=>{}, token)
+    postApiRequest(url, data, responseHandler, errorHandler, token)
   }
 
   function getUserOrders(token, setUserOrders){
     const url = `${SERVER_API_START_URL}orders/current_user_orders/`
     const responseHandler = (responseData) => {
-      console.log(responseData)
       setUserOrders(responseData)
     }
   

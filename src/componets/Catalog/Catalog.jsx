@@ -17,7 +17,7 @@ const Catalog = (props) => {
         <section className="page__catalog catalog">
             <div className="catalog__container _container">
                 <div className="catalog__body">
-                    <h1 className="catalog__title _title"><span>Catalog</span></h1>
+                    <h1 className="catalog__title _title"><span>Каталог</span></h1>
                     <div className="catalog__content">
                         <CatalogFilter setCurrentPage={props.setCurrentPage}/>
                         <ProductsContainer history={props.history} category={category}/>
