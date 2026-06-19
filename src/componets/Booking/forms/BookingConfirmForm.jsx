@@ -39,8 +39,8 @@ function BookingConfirmForm({ init, onSubmit, onBack }) {
   return (
     <Formik initialValues={initialValues} validationSchema={validation} onSubmit={onSubmit}>
       {({ values, errors, touched, handleBlur, handleChange, isValid }) => (
-        <Form className="order-form booking-confirm-form" autoComplete="off">
-          <div className="booking-step__title _title-standart">Шаг 4. Подтверждение</div>
+        <Form className="order-form booking-confirm-form booking-step" autoComplete="off">
+          <div className="booking-step__title _title-standart">Подтверждение данных</div>
 
           <div className="order-form__form">
             <FormikControl

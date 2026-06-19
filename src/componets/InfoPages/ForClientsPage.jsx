@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import InfoPageLayout from './shared/InfoPageLayout';
 import TextSection from './shared/TextSection';
 import FaqList from './shared/FaqList';
+import CtaRow from './shared/CtaRow';
 import {
   FOR_CLIENTS_FAQ,
   FOR_CLIENTS_INTRO,
@@ -12,20 +12,19 @@ import { ROUTES } from '../../config/routes';
 
 function ForClientsPage() {
   return (
-    <InfoPageLayout title="Для клиентов">
-      <TextSection
-        title={FOR_CLIENTS_INTRO.title}
-        paragraphs={FOR_CLIENTS_INTRO.paragraphs}
+    <InfoPageLayout title="Для клиентов" intro={FOR_CLIENTS_INTRO.paragraphs}>
+      <CtaRow
+        items={[
+          { to: ROUTES.catalog, label: 'Каталог анализов' },
+          { to: ROUTES.booking, label: 'Записаться на приём', variant: 'white' },
+        ]}
       />
-      <div style={{ marginBottom: '1.5rem' }}>
-        <Link to={ROUTES.catalog} className="btn">
-          Каталог анализов
-        </Link>
-      </div>
       <FaqList items={FOR_CLIENTS_FAQ} />
       <TextSection
         title={FOR_CLIENTS_SAMPLE_COLLECTION.title}
         paragraphs={FOR_CLIENTS_SAMPLE_COLLECTION.paragraphs}
+        iconClass="_icon-search"
+        variant="alt"
       />
     </InfoPageLayout>
   );

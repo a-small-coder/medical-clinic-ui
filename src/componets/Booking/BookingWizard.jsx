@@ -9,6 +9,7 @@ import {
 } from '../../config/clinicPageContent';
 import { formatAppointmentDateTime, createAppointmentId } from '../../config/appointmentDemo';
 import { saveAppointment } from '../../support_functions/appointmentStorage';
+import BookingStepIndicator from './shared/BookingStepIndicator';
 import BookingSummary from './shared/BookingSummary';
 import SelectDoctorServiceStep from './steps/SelectDoctorServiceStep';
 import SelectBranchStep from './steps/SelectBranchStep';
@@ -80,6 +81,7 @@ function BookingWizard({ user }) {
 
   return (
     <div className="booking-wizard">
+      {step < 5 && <BookingStepIndicator currentStep={step} />}
       {step < 5 && (
         <BookingSummary
           doctor={doctor ? getDoctorFullName(doctor) : ''}

@@ -1,25 +1,13 @@
 import React from 'react';
 import { getDoctorFullName } from '../../../config/clinicPageContent';
 
-function DoctorAvatar({ doctor, size = 64 }) {
+function DoctorAvatar({ doctor, size = 'md' }) {
   const initials = `${doctor.firstName[0]}${doctor.lastName[0]}`;
+  const sizeClass = size === 'lg' ? 'clinic-doctor-avatar_lg' : 'clinic-doctor-avatar_md';
 
   return (
     <div
-      className="clinic-doctor-avatar"
-      style={{
-        width: size,
-        height: size,
-        borderRadius: '50%',
-        background: '#e8f4f0',
-        color: '#2d6a4f',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 600,
-        fontSize: size * 0.35,
-        flexShrink: 0,
-      }}
+      className={`clinic-doctor-avatar ${sizeClass}`}
       aria-hidden="true"
       title={getDoctorFullName(doctor)}
     >

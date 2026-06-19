@@ -28,7 +28,7 @@ function SelectDateTimeStep({ branchId, selectedDate, datetime, onChange, onBack
 
   return (
     <div className="booking-step">
-      <div className="booking-step__title _title-standart">Шаг 3. Дата и время</div>
+      <div className="booking-step__title _title-standart">Выберите дату и время</div>
 
       <div className="form-control datepicker-block">
         <label htmlFor="booking-date">Дата приёма</label>
@@ -61,7 +61,9 @@ function SelectDateTimeStep({ branchId, selectedDate, datetime, onChange, onBack
             ))}
           </div>
         ) : (
-          <div className="text">На выбранную дату свободных слотов нет. Выберите другую дату.</div>
+          <div className="clinic-empty-state">
+            На выбранную дату свободных слотов нет. Выберите другую дату.
+          </div>
         )}
       </div>
 

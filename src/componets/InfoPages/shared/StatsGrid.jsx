@@ -6,11 +6,11 @@ function StatsGrid({ items }) {
   }
 
   return (
-    <div className="advantages" style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '2rem' }}>
+    <div className="info-stats">
       {items.map((item) => (
-        <div className="advantages__item" key={item.id} style={{ flex: '1 1 140px' }}>
-          <h4 className="advantages__title">{item.title}</h4>
-          <div className="advantages__text">{item.text}</div>
+        <div className="info-stats__item" key={item.id}>
+          <div className="info-stats__value">{item.title}</div>
+          <div className="info-stats__label">{item.text}</div>
         </div>
       ))}
     </div>

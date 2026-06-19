@@ -1,25 +1,24 @@
 import React from 'react';
 
-function ContentBlock({ sections, wrapperClassName = '' }) {
+function ContentBlock({ sections }) {
   if (!sections?.length) {
     return null;
   }
 
   return (
     <>
-      {sections.map((section) => (
-        <div className={`${wrapperClassName} content-block`} key={section.id}>
-          <div className="content-block__content text-content">
-            <div className="text-content__title">
-              <h4 className="_title-standart">{section.title}</h4>
-            </div>
-            <div className="text-content__article">
-              {section.paragraphs.map((paragraph, index) => (
-                <div className="text" key={index}>
-                  {paragraph}
-                </div>
-              ))}
-            </div>
+      {sections.map((section, index) => (
+        <div
+          className={`info-section${index % 2 === 1 ? ' info-section_alt' : ''}`}
+          key={section.id}
+        >
+          <h4 className="info-section__title _title-standart">{section.title}</h4>
+          <div className="info-section__body text-content__article">
+            {section.paragraphs.map((paragraph, paragraphIndex) => (
+              <div className="text" key={paragraphIndex}>
+                {paragraph}
+              </div>
+            ))}
           </div>
         </div>
       ))}

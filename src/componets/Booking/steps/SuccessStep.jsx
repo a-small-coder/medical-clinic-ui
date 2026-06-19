@@ -6,20 +6,31 @@ import { ROUTES } from '../../../config/routes';
 function SuccessStep({ appointment, doctorName, serviceTitle, branchName, isAuthenticated }) {
   return (
     <div className="booking-step booking-success">
+      <div className="booking-success__icon" aria-hidden="true">
+        ✓
+      </div>
       <div className="booking-step__title _title-standart">Запись подтверждена</div>
-      <div className="text-content__article">
-        <div className="text">Номер записи: {appointment.id}</div>
-        <div className="text" style={{ marginTop: '0.5rem' }}>
-          {formatAppointmentDateTime(appointment.datetime)}
+
+      <div className="booking-success__details">
+        <div className="booking-success__row">
+          <span className="booking-success__label">Номер:</span>
+          <span>{appointment.id}</span>
         </div>
-        <div className="text" style={{ marginTop: '0.5rem' }}>
-          Врач: {doctorName}
+        <div className="booking-success__row">
+          <span className="booking-success__label">Дата:</span>
+          <span>{formatAppointmentDateTime(appointment.datetime)}</span>
         </div>
-        <div className="text" style={{ marginTop: '0.35rem' }}>
-          Услуга: {serviceTitle}
+        <div className="booking-success__row">
+          <span className="booking-success__label">Врач:</span>
+          <span>{doctorName}</span>
         </div>
-        <div className="text" style={{ marginTop: '0.35rem' }}>
-          Филиал: {branchName}
+        <div className="booking-success__row">
+          <span className="booking-success__label">Услуга:</span>
+          <span>{serviceTitle}</span>
+        </div>
+        <div className="booking-success__row">
+          <span className="booking-success__label">Филиал:</span>
+          <span>{branchName}</span>
         </div>
       </div>
 

@@ -4,32 +4,26 @@ import { ROUTES } from '../../../config/routes';
 
 function ServiceListItem({ service }) {
   return (
-    <div
-      className="text-content"
-      style={{
-        marginBottom: '1rem',
-        paddingBottom: '1rem',
-        borderBottom: '1px solid rgba(0,0,0,0.06)',
-      }}
+    <article
+      className={`clinic-service-card${service.isPackage ? ' clinic-service-card_package' : ''}`}
     >
-      <div className="text-content__title">
-        <h4 className="_title-standart">
-          <Link to={`${ROUTES.services}/${service.slug}`}>{service.title}</Link>
-        </h4>
+      {service.isPackage && <span className="clinic-service-card__badge">Пакет</span>}
+      <h4 className="clinic-service-card__title">
+        <Link to={`${ROUTES.services}/${service.slug}`}>{service.title}</Link>
+      </h4>
+      <p className="clinic-service-card__description">{service.description}</p>
+      <div className="clinic-service-card__meta">
+        <span className="clinic-meta-badge clinic-meta-badge_accent">
+          от {service.priceFrom.toLocaleString('ru-RU')} ₽
+        </span>
+        <span className="clinic-meta-badge">{service.durationMin} мин</span>
       </div>
-      <div className="text-content__article">
-        <div className="text">{service.description}</div>
-        <div className="text" style={{ marginTop: '0.35rem', opacity: 0.85 }}>
-          от {service.priceFrom.toLocaleString('ru-RU')} ₽ · {service.durationMin} мин
-          {service.isPackage && ' · Пакет'}
-        </div>
-        <div style={{ marginTop: '0.75rem' }}>
-          <Link to={`${ROUTES.services}/${service.slug}`} className="btn btn_white">
-            Подробнее
-          </Link>
-        </div>
+      <div className="clinic-service-card__footer">
+        <Link to={`${ROUTES.services}/${service.slug}`} className="btn btn_white">
+          Подробнее
+        </Link>
       </div>
-    </div>
+    </article>
   );
 }
 

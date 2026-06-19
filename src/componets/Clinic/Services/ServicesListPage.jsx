@@ -27,19 +27,17 @@ function ServicesListPage() {
     >
       {groupedServices.length > 0 ? (
         groupedServices.map(({ direction, services }) => (
-          <div key={direction} style={{ marginBottom: '2rem' }}>
-            <div className="text-content__title" style={{ marginBottom: '1rem' }}>
-              <h4 className="_title-standart">{direction}</h4>
+          <section key={direction} className="clinic-service-group">
+            <h4 className="clinic-service-group__title">{direction}</h4>
+            <div className="clinic-service-group__grid">
+              {services.map((service) => (
+                <ServiceListItem key={service.slug} service={service} />
+              ))}
             </div>
-            {services.map((service) => (
-              <ServiceListItem key={service.slug} service={service} />
-            ))}
-          </div>
+          </section>
         ))
       ) : (
-        <div className="text-content__article">
-          <div className="text">Услуги не найдены.</div>
-        </div>
+        <div className="clinic-empty-state">Услуги не найдены.</div>
       )}
     </ClinicPageLayout>
   );

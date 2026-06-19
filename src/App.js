@@ -22,7 +22,7 @@ import AboutUsConteiner from "./componets/AboutUs/AboutUsConteiner";
 import ForClientsPage from "./componets/InfoPages/ForClientsPage";
 import ForPartnersPage from "./componets/InfoPages/ForPartnersPage";
 import StocksPage from "./componets/InfoPages/StocksPage";
-import LocationPage from "./componets/Clinic/LocationPage";
+import LocationPage from "./componets/Clinic/Location/LocationPage";
 import LicensePage from "./componets/LegalPages/LicensePage";
 import PersonalDataPolicyPage from "./componets/LegalPages/PersonalDataPolicyPage";
 import PersonalDataConsentPage from "./componets/LegalPages/PersonalDataConsentPage";

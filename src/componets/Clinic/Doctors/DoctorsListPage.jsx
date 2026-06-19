@@ -15,11 +15,13 @@ function DoctorsListPage() {
     >
       <SpecializationFilter value={specialization} onChange={setSpecialization} />
       {doctors.length > 0 ? (
-        doctors.map((doctor) => <DoctorListItem key={doctor.id} doctor={doctor} />)
-      ) : (
-        <div className="text-content__article">
-          <div className="text">Врачи по выбранной специализации не найдены.</div>
+        <div className="clinic-doctors-grid">
+          {doctors.map((doctor) => (
+            <DoctorListItem key={doctor.id} doctor={doctor} />
+          ))}
         </div>
+      ) : (
+        <div className="clinic-empty-state">Врачи по выбранной специализации не найдены.</div>
       )}
     </ClinicPageLayout>
   );

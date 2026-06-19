@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { setProductsAC, setAboutUsAC, setAchivmentsSmallAC, setAnalyzesComplexesAC, setCurrentPageUnicProductsAC, setTopServisesSlidesAC } from '../../redux/mainPage-reducer';
 import urlStart, { getApiResponse } from '../../support_functions/api_requests';
 import LoadingSheme from '../SupportsComponents/LoadingSheme';
+import { DEMO_HOME_ABOUT_US } from '../../config/mainPageDemoContent';
 
 const MainPage = (props) => {
 
@@ -17,7 +18,6 @@ const MainPage = (props) => {
         setNeedRedirect(false)
         const bestProductsUrl = `${urlStart}best-products/`
         const bestComplexesUrl = `${urlStart}best-complex-analyzes/`
-        const aboutUsUrl = `${urlStart}about-us/`
         const achievementsUrl = `${urlStart}achievements/`
         const uniqueAnalyzesUrl = `${urlStart}catalog/unic-analyzes?page=${props.pageNumber}&count=${props.pageSize}`
         const mapGoodResponseDataForProducts = (data) =>{
@@ -28,7 +28,7 @@ const MainPage = (props) => {
         }
         getApiResponse(bestProductsUrl, false, props.setTopServisesSlides, badResponseHandler)
         getApiResponse(bestComplexesUrl, false, props.setAnalyzesComplexes, badResponseHandler)
-        getApiResponse(aboutUsUrl, false, props.setAboutUs, badResponseHandler)
+        props.setAboutUs(DEMO_HOME_ABOUT_US)
         getApiResponse(achievementsUrl, false, props.setAchivmentsSmall, badResponseHandler)
         if (props.mainPage.products.items.length === 0){
             getApiResponse(uniqueAnalyzesUrl, false, mapGoodResponseDataForProducts, badResponseHandler)

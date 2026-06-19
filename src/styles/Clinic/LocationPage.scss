@@ -1,0 +1,132 @@
+.location-map {
+  margin-bottom: calc(24px + 8 * ((100vw - 320px) / 950));
+  padding: calc(16px + 8 * ((100vw - 320px) / 950));
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.location-map__title {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.location-map__frame {
+  width: 100%;
+  height: 400px;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.location-branches {
+  margin-bottom: calc(24px + 8 * ((100vw - 320px) / 950));
+}
+
+.location-branches__title {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  &::before {
+    content: '';
+    width: 4px;
+    height: 1.25em;
+    background: #0FC0FC;
+    border-radius: 2px;
+  }
+}
+
+.location-branches__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.location-branch {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: calc(20px + 12 * ((100vw - 320px) / 950));
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-top: 3px solid #0FC0FC;
+
+  &_sample {
+    background: linear-gradient(180deg, #DBF4FC 0%, #fff 40%);
+    border-color: rgba(15, 192, 252, 0.15);
+  }
+
+  &__badge {
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    background: #0FC0FC;
+    border-radius: 30px;
+    padding: 4px 10px;
+    margin-bottom: 0.75rem;
+  }
+
+  &__title {
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1 1 auto;
+  }
+
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 0.65rem;
+    line-height: 150%;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+
+  &__item_highlight {
+    color: #0a8fbf;
+    font-weight: 500;
+  }
+
+  &__label {
+    color: #898989;
+    min-width: 80px;
+  }
+
+  &__item a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: #0FC0FC;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .location-branches__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .location-map__frame {
+    height: 280px;
+  }
+}

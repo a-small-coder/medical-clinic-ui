@@ -2,21 +2,16 @@ import React from 'react';
 import { DOCTOR_SPECIALIZATIONS } from '../../../config/clinicPageContent';
 
 function SpecializationFilter({ value, onChange }) {
-  const options = [{ value: 'all', label: 'Все' }, ...DOCTOR_SPECIALIZATIONS.map((spec) => ({
-    value: spec,
-    label: spec,
-  }))];
+  const options = [
+    { value: 'all', label: 'Все специализации' },
+    ...DOCTOR_SPECIALIZATIONS.map((spec) => ({
+      value: spec,
+      label: spec,
+    })),
+  ];
 
   return (
-    <div
-      className="clinic-specialization-filter"
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '0.5rem',
-        marginBottom: '1.5rem',
-      }}
-    >
+    <div className="clinic-filter">
       {options.map((option) => {
         const isActive = value === option.value;
 
@@ -24,7 +19,7 @@ function SpecializationFilter({ value, onChange }) {
           <button
             key={option.value}
             type="button"
-            className={`btn ${isActive ? '_filled-btn _green' : 'btn_white'}`}
+            className={`btn clinic-filter__chip ${isActive ? '_filled-btn _green _active' : 'btn_white'}`}
             onClick={() => onChange(option.value)}
           >
             {option.label}

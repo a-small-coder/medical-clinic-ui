@@ -14,7 +14,9 @@ export const BRANCHES = [
     name: 'Главный филиал',
     address: CLINIC_ADDRESS,
     phone: CLINIC_PHONE,
+    email: CLINIC_EMAIL,
     schedule: 'Пн–Вс: 8:00–21:00',
+    mapCoords: [55.747, 37.583],
     isSampleCollectionPoint: true,
     officeLabel: 'Пункт сдачи анализов, каб. 204',
   },
@@ -23,13 +25,54 @@ export const BRANCHES = [
     name: 'Филиал на Арбате',
     address: 'г. Москва, ул. Арбат, д. 12',
     phone: '+7 (495) 120-45-68',
+    email: CLINIC_EMAIL,
     schedule: 'Пн–Сб: 9:00–20:00',
+    mapCoords: [55.752, 37.592],
     isSampleCollectionPoint: false,
   },
 ];
 
+export const getPrimaryBranch = () => BRANCHES.find((branch) => branch.id === 1) || BRANCHES[0];
+
 export const getSampleCollectionOffice = () =>
   BRANCHES.find((branch) => branch.isSampleCollectionPoint);
+
+export function formatInOfficeAddress(branch) {
+  if (!branch) {
+    return '';
+  }
+
+  if (branch.isSampleCollectionPoint && branch.officeLabel) {
+    return `${branch.address} — ${branch.officeLabel}`;
+  }
+
+  return branch.address;
+}
+
+export function buildYandexMapUrl(branches = BRANCHES) {
+  const points = branches.filter((branch) => branch.mapCoords?.length === 2);
+
+  if (!points.length) {
+    return '';
+  }
+
+  const [centerLat, centerLng] = points[0].mapCoords;
+  const markers = points
+    .map((branch) => {
+      const [lat, lng] = branch.mapCoords;
+      const markerStyle = branch.isSampleCollectionPoint ? 'pm2grm' : 'pm2blm';
+      return `${lng},${lat},${markerStyle}`;
+    })
+    .join('~');
+
+  const params = new URLSearchParams({
+    ll: `${centerLng},${centerLat}`,
+    z: points.length > 1 ? '12' : '16',
+    pt: markers,
+  });
+
+  return `https://yandex.ru/map-widget/v1/?${params.toString()}`;
+}
 
 export const DEMO_CLINIC_OPERATOR = {
   name: 'ООО «Здоровье+»',

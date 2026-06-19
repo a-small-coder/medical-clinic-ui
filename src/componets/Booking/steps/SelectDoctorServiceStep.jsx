@@ -42,7 +42,7 @@ function SelectDoctorServiceStep({ doctorId, serviceSlug, onChange, onNext }) {
 
   return (
     <div className="booking-step">
-      <div className="booking-step__title _title-standart">Шаг 1. Врач и услуга</div>
+      <div className="booking-step__title _title-standart">Выберите врача и услугу</div>
 
       <div className="form-control select__block">
         <label className="select__label" htmlFor="booking-doctor">

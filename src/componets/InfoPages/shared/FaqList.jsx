@@ -7,18 +7,18 @@ function FaqList({ items }) {
   }
 
   return (
-    <div className="text-content">
-      <div className="text-content__title">
+    <div className="info-faq">
+      <div className="info-faq__heading">
         <h4 className="_title-standart">Частые вопросы</h4>
       </div>
-      <div className="text-content__article">
+      <div className="info-faq__list">
         {items.map((item) => (
-          <div className="text" key={item.id} style={{ marginBottom: '1.25rem' }}>
-            <strong>{item.question}</strong>
-            <div style={{ marginTop: '0.5rem' }}>{item.answer}</div>
+          <div className="info-faq__item" key={item.id}>
+            <div className="info-faq__question">{item.question}</div>
+            <div className="info-faq__answer">{item.answer}</div>
             {item.link && (
-              <div style={{ marginTop: '0.5rem' }}>
-                <Link to={item.link.to} className="_text-link">
+              <div className="info-faq__link">
+                <Link to={item.link.to} className="btn btn_white">
                   {item.link.label}
                 </Link>
               </div>

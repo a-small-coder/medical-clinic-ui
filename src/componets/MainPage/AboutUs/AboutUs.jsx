@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import Item from './Item';
 import Swiper from 'react-id-swiper';
+import { DEMO_HOME_ABOUT_US_LINK } from '../../../config/mainPageDemoContent';
+
 const AboutUs = (props) => {
 
     let itemElements = []
 
     for (let category of props.aboutUs){
         itemElements.push(category.content_items.map(
-            a => <Item key={a.id} title={a.title} text={a.text} link={category.slug + "/"+ a.slug}/>
+            a => <Item key={a.id} title={a.title} text={a.text} link={DEMO_HOME_ABOUT_US_LINK}/>
             ))
     }
 

@@ -4,7 +4,7 @@ import { ROUTES } from '../../../config/routes';
 
 function ClinicCtaButtons({ bookingTo, showCatalogLink = false, bookingLabel = 'Записаться' }) {
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '1.5rem' }}>
+    <div className="clinic-cta info-cta">
       <Link to={bookingTo} className="btn _filled-btn _green">
         {bookingLabel}
       </Link>
